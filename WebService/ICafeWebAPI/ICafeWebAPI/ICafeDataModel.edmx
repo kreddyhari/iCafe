@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ICafeDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ICafeDBModelStoreContainer">
+          <EntitySet Name="CustomersMaster" EntityType="ICafeDBModel.Store.CustomersMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ItemCategoriesMaster" EntityType="ICafeDBModel.Store.ItemCategoriesMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ItemsMaster" EntityType="ICafeDBModel.Store.ItemsMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MenusMaster" EntityType="ICafeDBModel.Store.MenusMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrdersMaster" EntityType="ICafeDBModel.Store.OrdersMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PermissionsMaster" EntityType="ICafeDBModel.Store.PermissionsMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RolesMaster" EntityType="ICafeDBModel.Store.RolesMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="ICafeDBModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UsersMaster" EntityType="ICafeDBModel.Store.UsersMaster" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_OrdersMaster_CustomersMaster" Association="ICafeDBModel.Store.FK_OrdersMaster_CustomersMaster">
+            <End Role="CustomersMaster" EntitySet="CustomersMaster" />
+            <End Role="OrdersMaster" EntitySet="OrdersMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersMaster_UsersMaster" Association="ICafeDBModel.Store.FK_OrdersMaster_UsersMaster">
+            <End Role="UsersMaster" EntitySet="UsersMaster" />
+            <End Role="OrdersMaster" EntitySet="OrdersMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolesMaster_PermissionsMaster" Association="ICafeDBModel.Store.FK_RolesMaster_PermissionsMaster">
+            <End Role="PermissionsMaster" EntitySet="PermissionsMaster" />
+            <End Role="RolesMaster" EntitySet="RolesMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersMaster_RolesMaster" Association="ICafeDBModel.Store.FK_UsersMaster_RolesMaster">
+            <End Role="RolesMaster" EntitySet="RolesMaster" />
+            <End Role="UsersMaster" EntitySet="UsersMaster" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CustomersMaster">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerEmailId" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="CustomerAddress" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ItemCategoriesMaster">
+          <Key>
+            <PropertyRef Name="ItemCategoryId" />
+          </Key>
+          <Property Name="ItemCategoryId" Type="int" Nullable="false" />
+          <Property Name="ItemCategoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ItemCategoryDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="ItemCategoryDiscount" Type="decimal" Precision="14" Scale="4" />
+        </EntityType>
+        <EntityType Name="ItemsMaster">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ItemDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="ItemIngrediants" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsAvailable" Type="bit" />
+          <Property Name="ItemImage" Type="nvarchar" MaxLength="500" />
+          <Property Name="ItemDiscount" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="ItemPrice" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="ItemSpicyLevel" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MenusMaster">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MenuDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="MenuFromTime" Type="datetime" />
+          <Property Name="MenuToTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrdersMaster">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="TotalReOrders" Type="int" />
+          <Property Name="PaymentStatus" Type="nvarchar" MaxLength="10" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermissionsMaster">
+          <Key>
+            <PropertyRef Name="PermissionId" />
+          </Key>
+          <Property Name="PermissionId" Type="int" Nullable="false" />
+          <Property Name="PermissionName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RolesMaster">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="PermissionId" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UsersMaster">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleId" Type="int" />
+        </EntityType>
+        <Association Name="FK_OrdersMaster_CustomersMaster">
+          <End Role="CustomersMaster" Type="ICafeDBModel.Store.CustomersMaster" Multiplicity="1" />
+          <End Role="OrdersMaster" Type="ICafeDBModel.Store.OrdersMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomersMaster">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="OrdersMaster">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersMaster_UsersMaster">
+          <End Role="UsersMaster" Type="ICafeDBModel.Store.UsersMaster" Multiplicity="1" />
+          <End Role="OrdersMaster" Type="ICafeDBModel.Store.OrdersMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersMaster">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="OrdersMaster">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolesMaster_PermissionsMaster">
+          <End Role="PermissionsMaster" Type="ICafeDBModel.Store.PermissionsMaster" Multiplicity="0..1" />
+          <End Role="RolesMaster" Type="ICafeDBModel.Store.RolesMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionsMaster">
+              <PropertyRef Name="PermissionId" />
+            </Principal>
+            <Dependent Role="RolesMaster">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersMaster_RolesMaster">
+          <End Role="RolesMaster" Type="ICafeDBModel.Store.RolesMaster" Multiplicity="0..1" />
+          <End Role="UsersMaster" Type="ICafeDBModel.Store.UsersMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolesMaster">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UsersMaster">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'ICafeDB.dbo.ItemsConfiguration' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="ItemsConfiguration">
+        <Property Name="MenuCategoryId" Type="int" />
+        <Property Name="ItemCategoryId" Type="int" />
+        <Property Name="ItemId" Type="int" />
+        <Property Name="Discount" Type="decimal" Precision="14" Scale="4" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'ICafeDB.dbo.OrdersDetails' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="OrdersDetails">
+        <Property Name="OrderId" Type="int" />
+        <Property Name="ItemId" Type="int" />
+        <Property Name="OrderQuantiry" Type="int" />
+        <Property Name="OrderType" Type="nvarchar" MaxLength="50" />
+        <Property Name="OrderPreferences" Type="nvarchar" MaxLength="500" />
+      </EntityType>-->
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ICafeDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ICafeDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="CustomersMasters" EntityType="ICafeDBModel.CustomersMaster" />
+          <EntitySet Name="ItemCategoriesMasters" EntityType="ICafeDBModel.ItemCategoriesMaster" />
+          <EntitySet Name="ItemsMasters" EntityType="ICafeDBModel.ItemsMaster" />
+          <EntitySet Name="MenusMasters" EntityType="ICafeDBModel.MenusMaster" />
+          <EntitySet Name="OrdersMasters" EntityType="ICafeDBModel.OrdersMaster" />
+          <EntitySet Name="PermissionsMasters" EntityType="ICafeDBModel.PermissionsMaster" />
+          <EntitySet Name="RolesMasters" EntityType="ICafeDBModel.RolesMaster" />
+          <EntitySet Name="sysdiagrams" EntityType="ICafeDBModel.sysdiagram" />
+          <EntitySet Name="UsersMasters" EntityType="ICafeDBModel.UsersMaster" />
+          <AssociationSet Name="FK_OrdersMaster_CustomersMaster" Association="ICafeDBModel.FK_OrdersMaster_CustomersMaster">
+            <End Role="CustomersMaster" EntitySet="CustomersMasters" />
+            <End Role="OrdersMaster" EntitySet="OrdersMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersMaster_UsersMaster" Association="ICafeDBModel.FK_OrdersMaster_UsersMaster">
+            <End Role="UsersMaster" EntitySet="UsersMasters" />
+            <End Role="OrdersMaster" EntitySet="OrdersMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolesMaster_PermissionsMaster" Association="ICafeDBModel.FK_RolesMaster_PermissionsMaster">
+            <End Role="PermissionsMaster" EntitySet="PermissionsMasters" />
+            <End Role="RolesMaster" EntitySet="RolesMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersMaster_RolesMaster" Association="ICafeDBModel.FK_UsersMaster_RolesMaster">
+            <End Role="RolesMaster" EntitySet="RolesMasters" />
+            <End Role="UsersMaster" EntitySet="UsersMasters" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CustomersMaster">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CustomerEmailId" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CustomerPhone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CustomerDescription" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="OrdersMasters" Relationship="ICafeDBModel.FK_OrdersMaster_CustomersMaster" FromRole="CustomersMaster" ToRole="OrdersMaster" />
+        </EntityType>
+        <EntityType Name="ItemCategoriesMaster">
+          <Key>
+            <PropertyRef Name="ItemCategoryId" />
+          </Key>
+          <Property Name="ItemCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="ItemCategoryName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ItemCategoryDescription" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ItemCategoryDiscount" Type="Decimal" Precision="14" Scale="4" />
+        </EntityType>
+        <EntityType Name="ItemsMaster">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="ItemName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ItemDescription" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ItemIngrediants" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IsAvailable" Type="Boolean" />
+          <Property Name="ItemImage" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ItemDiscount" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="ItemPrice" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="ItemSpicyLevel" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MenusMaster">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="MenuName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MenuDescription" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="MenuFromTime" Type="DateTime" Precision="3" />
+          <Property Name="MenuToTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OrdersMaster">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="TotalReOrders" Type="Int32" />
+          <Property Name="PaymentStatus" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CustomersMaster" Relationship="ICafeDBModel.FK_OrdersMaster_CustomersMaster" FromRole="OrdersMaster" ToRole="CustomersMaster" />
+          <NavigationProperty Name="UsersMaster" Relationship="ICafeDBModel.FK_OrdersMaster_UsersMaster" FromRole="OrdersMaster" ToRole="UsersMaster" />
+        </EntityType>
+        <EntityType Name="PermissionsMaster">
+          <Key>
+            <PropertyRef Name="PermissionId" />
+          </Key>
+          <Property Name="PermissionId" Type="Int32" Nullable="false" />
+          <Property Name="PermissionName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="RolesMasters" Relationship="ICafeDBModel.FK_RolesMaster_PermissionsMaster" FromRole="PermissionsMaster" ToRole="RolesMaster" />
+        </EntityType>
+        <EntityType Name="RolesMaster">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="RoleDescription" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="PermissionId" Type="Int32" />
+          <NavigationProperty Name="PermissionsMaster" Relationship="ICafeDBModel.FK_RolesMaster_PermissionsMaster" FromRole="RolesMaster" ToRole="PermissionsMaster" />
+          <NavigationProperty Name="UsersMasters" Relationship="ICafeDBModel.FK_UsersMaster_RolesMaster" FromRole="RolesMaster" ToRole="UsersMaster" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UsersMaster">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UserDescription" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <NavigationProperty Name="OrdersMasters" Relationship="ICafeDBModel.FK_OrdersMaster_UsersMaster" FromRole="UsersMaster" ToRole="OrdersMaster" />
+          <NavigationProperty Name="RolesMaster" Relationship="ICafeDBModel.FK_UsersMaster_RolesMaster" FromRole="UsersMaster" ToRole="RolesMaster" />
+        </EntityType>
+        <Association Name="FK_OrdersMaster_CustomersMaster">
+          <End Role="CustomersMaster" Type="ICafeDBModel.CustomersMaster" Multiplicity="1" />
+          <End Role="OrdersMaster" Type="ICafeDBModel.OrdersMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomersMaster">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="OrdersMaster">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersMaster_UsersMaster">
+          <End Role="UsersMaster" Type="ICafeDBModel.UsersMaster" Multiplicity="1" />
+          <End Role="OrdersMaster" Type="ICafeDBModel.OrdersMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersMaster">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="OrdersMaster">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolesMaster_PermissionsMaster">
+          <End Role="PermissionsMaster" Type="ICafeDBModel.PermissionsMaster" Multiplicity="0..1" />
+          <End Role="RolesMaster" Type="ICafeDBModel.RolesMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionsMaster">
+              <PropertyRef Name="PermissionId" />
+            </Principal>
+            <Dependent Role="RolesMaster">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersMaster_RolesMaster">
+          <End Role="RolesMaster" Type="ICafeDBModel.RolesMaster" Multiplicity="0..1" />
+          <End Role="UsersMaster" Type="ICafeDBModel.UsersMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolesMaster">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UsersMaster">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ICafeDBModelStoreContainer" CdmEntityContainer="ICafeDBEntities">
+          <EntitySetMapping Name="CustomersMasters">
+            <EntityTypeMapping TypeName="ICafeDBModel.CustomersMaster">
+              <MappingFragment StoreEntitySet="CustomersMaster">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerEmailId" ColumnName="CustomerEmailId" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="CustomerDescription" ColumnName="CustomerDescription" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemCategoriesMasters">
+            <EntityTypeMapping TypeName="ICafeDBModel.ItemCategoriesMaster">
+              <MappingFragment StoreEntitySet="ItemCategoriesMaster">
+                <ScalarProperty Name="ItemCategoryId" ColumnName="ItemCategoryId" />
+                <ScalarProperty Name="ItemCategoryName" ColumnName="ItemCategoryName" />
+                <ScalarProperty Name="ItemCategoryDescription" ColumnName="ItemCategoryDescription" />
+                <ScalarProperty Name="ItemCategoryDiscount" ColumnName="ItemCategoryDiscount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemsMasters">
+            <EntityTypeMapping TypeName="ICafeDBModel.ItemsMaster">
+              <MappingFragment StoreEntitySet="ItemsMaster">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="ItemIngrediants" ColumnName="ItemIngrediants" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="ItemImage" ColumnName="ItemImage" />
+                <ScalarProperty Name="ItemDiscount" ColumnName="ItemDiscount" />
+                <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+                <ScalarProperty Name="ItemSpicyLevel" ColumnName="ItemSpicyLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenusMasters">
+            <EntityTypeMapping TypeName="ICafeDBModel.MenusMaster">
+              <MappingFragment StoreEntitySet="MenusMaster">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuDescription" ColumnName="MenuDescription" />
+                <ScalarProperty Name="MenuFromTime" ColumnName="MenuFromTime" />
+                <ScalarProperty Name="MenuToTime" ColumnName="MenuToTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdersMasters">
+            <EntityTypeMapping TypeName="ICafeDBModel.OrdersMaster">
+              <MappingFragment StoreEntitySet="OrdersMaster">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="TotalReOrders" ColumnName="TotalReOrders" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermissionsMasters">
+            <EntityTypeMapping TypeName="ICafeDBModel.PermissionsMaster">
+              <MappingFragment StoreEntitySet="PermissionsMaster">
+                <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+                <ScalarProperty Name="PermissionName" ColumnName="PermissionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolesMasters">
+            <EntityTypeMapping TypeName="ICafeDBModel.RolesMaster">
+              <MappingFragment StoreEntitySet="RolesMaster">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+                <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ICafeDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersMasters">
+            <EntityTypeMapping TypeName="ICafeDBModel.UsersMaster">
+              <MappingFragment StoreEntitySet="UsersMaster">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserDescription" ColumnName="UserDescription" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
