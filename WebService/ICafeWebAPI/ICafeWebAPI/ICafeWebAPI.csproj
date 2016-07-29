@@ -15,7 +15,7 @@
     <AssemblyName>ICafeWebAPI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -126,52 +126,61 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="CustomersMaster.cs">
+    <Compile Include="DataModel\D_ItemTags.cs">
+      <DependentUpon>ICafeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\ICafeDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ICafeDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\ICafeDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ICafeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\ICafeDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ICafeDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\M_Customers.cs">
+      <DependentUpon>ICafeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\M_Devices.cs">
+      <DependentUpon>ICafeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\M_ItemCategories.cs">
+      <DependentUpon>ICafeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\M_Items.cs">
+      <DependentUpon>ICafeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\M_Menus.cs">
+      <DependentUpon>ICafeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\M_Orders.cs">
+      <DependentUpon>ICafeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\M_Permissions.cs">
+      <DependentUpon>ICafeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\M_Roles.cs">
+      <DependentUpon>ICafeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\M_Tables.cs">
+      <DependentUpon>ICafeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\M_Tags.cs">
+      <DependentUpon>ICafeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\M_Users.cs">
       <DependentUpon>ICafeDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ICafeDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ICafeDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ICafeDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ICafeDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ICafeDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ICafeDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="ItemCategoriesMaster.cs">
-      <DependentUpon>ICafeDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ItemsMaster.cs">
-      <DependentUpon>ICafeDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MenusMaster.cs">
-      <DependentUpon>ICafeDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrdersMaster.cs">
-      <DependentUpon>ICafeDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PermissionsMaster.cs">
-      <DependentUpon>ICafeDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RolesMaster.cs">
-      <DependentUpon>ICafeDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>ICafeDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UsersMaster.cs">
-      <DependentUpon>ICafeDataModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -230,24 +239,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="ICafeDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ICafeDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="ICafeDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ICafeDataModel.edmx</DependentUpon>
-      <LastGenOutput>ICafeDataModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ICafeDataModel.edmx.diagram">
-      <DependentUpon>ICafeDataModel.edmx</DependentUpon>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="ICafeDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ICafeDataModel.edmx</DependentUpon>
-      <LastGenOutput>ICafeDataModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -285,6 +276,27 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DataModel\ICafeDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ICafeDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataModel\ICafeDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ICafeDataModel.edmx</DependentUpon>
+      <LastGenOutput>ICafeDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataModel\ICafeDataModel.edmx.diagram">
+      <DependentUpon>ICafeDataModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DataModel\ICafeDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ICafeDataModel.edmx</DependentUpon>
+      <LastGenOutput>ICafeDataModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -301,9 +313,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>42151</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:6180/</IISUrl>
+          <IISUrl>http://localhost/ICafeWebAPI</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
