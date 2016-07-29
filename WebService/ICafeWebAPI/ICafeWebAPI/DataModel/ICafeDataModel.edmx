@@ -1,0 +1,609 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ICafeDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ICafeDataModelStoreContainer">
+          <EntitySet Name="D_ItemTags" EntityType="ICafeDataModel.Store.D_ItemTags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="M_Customers" EntityType="ICafeDataModel.Store.M_Customers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="M_Devices" EntityType="ICafeDataModel.Store.M_Devices" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="M_ItemCategories" EntityType="ICafeDataModel.Store.M_ItemCategories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="M_Items" EntityType="ICafeDataModel.Store.M_Items" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="M_Menus" EntityType="ICafeDataModel.Store.M_Menus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="M_Orders" EntityType="ICafeDataModel.Store.M_Orders" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="M_Permissions" EntityType="ICafeDataModel.Store.M_Permissions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="M_Roles" EntityType="ICafeDataModel.Store.M_Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="M_Tables" EntityType="ICafeDataModel.Store.M_Tables" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="M_Tags" EntityType="ICafeDataModel.Store.M_Tags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="M_Users" EntityType="ICafeDataModel.Store.M_Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_M_Orders_M_Customers" Association="ICafeDataModel.Store.FK_M_Orders_M_Customers">
+            <End Role="M_Customers" EntitySet="M_Customers" />
+            <End Role="M_Orders" EntitySet="M_Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Orders_M_Users" Association="ICafeDataModel.Store.FK_M_Orders_M_Users">
+            <End Role="M_Users" EntitySet="M_Users" />
+            <End Role="M_Orders" EntitySet="M_Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Roles_M_Permissions" Association="ICafeDataModel.Store.FK_M_Roles_M_Permissions">
+            <End Role="M_Permissions" EntitySet="M_Permissions" />
+            <End Role="M_Roles" EntitySet="M_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Tables_M_Devices" Association="ICafeDataModel.Store.FK_M_Tables_M_Devices">
+            <End Role="M_Devices" EntitySet="M_Devices" />
+            <End Role="M_Tables" EntitySet="M_Tables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Users_M_Roles" Association="ICafeDataModel.Store.FK_M_Users_M_Roles">
+            <End Role="M_Roles" EntitySet="M_Roles" />
+            <End Role="M_Users" EntitySet="M_Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="D_ItemTags">
+          <Key>
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="TagID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="M_Customers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="M_Devices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsMultipleMode" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="M_ItemCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Discount" Type="decimal" Precision="14" Scale="4" />
+        </EntityType>
+        <EntityType Name="M_Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Ingrediants" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsAvailable" Type="bit" />
+          <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="Discount" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="Price" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="SpicyLevel" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="M_Menus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="FromTime" Type="datetime" />
+          <Property Name="ToTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="M_Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TotalReOrders" Type="int" />
+          <Property Name="PaymentStatus" Type="nvarchar" MaxLength="10" />
+          <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="M_Permissions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="M_Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="PermissionId" Type="int" />
+        </EntityType>
+        <EntityType Name="M_Tables">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeviceID" Type="int" />
+        </EntityType>
+        <EntityType Name="M_Tags">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="M_Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleId" Type="int" />
+        </EntityType>
+        <Association Name="FK_M_Orders_M_Customers">
+          <End Role="M_Customers" Type="ICafeDataModel.Store.M_Customers" Multiplicity="1" />
+          <End Role="M_Orders" Type="ICafeDataModel.Store.M_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="M_Orders">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Orders_M_Users">
+          <End Role="M_Users" Type="ICafeDataModel.Store.M_Users" Multiplicity="1" />
+          <End Role="M_Orders" Type="ICafeDataModel.Store.M_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="M_Orders">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Roles_M_Permissions">
+          <End Role="M_Permissions" Type="ICafeDataModel.Store.M_Permissions" Multiplicity="0..1" />
+          <End Role="M_Roles" Type="ICafeDataModel.Store.M_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Permissions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="M_Roles">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Tables_M_Devices">
+          <End Role="M_Devices" Type="ICafeDataModel.Store.M_Devices" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M_Tables" Type="ICafeDataModel.Store.M_Tables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Devices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="M_Tables">
+              <PropertyRef Name="DeviceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Users_M_Roles">
+          <End Role="M_Roles" Type="ICafeDataModel.Store.M_Roles" Multiplicity="0..1" />
+          <End Role="M_Users" Type="ICafeDataModel.Store.M_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="M_Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'ICafe.dbo.D_ItemsConfiguration' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="D_ItemsConfiguration">
+        <Property Name="MenuId" Type="int" />
+        <Property Name="ItemCategoryId" Type="int" />
+        <Property Name="ItemId" Type="int" />
+        <Property Name="Discount" Type="decimal" Precision="14" Scale="4" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'ICafe.dbo.D_OrdersDetails' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="D_OrdersDetails">
+        <Property Name="OrderId" Type="int" />
+        <Property Name="ItemId" Type="int" />
+        <Property Name="OrderQuantiry" Type="int" />
+        <Property Name="OrderType" Type="nvarchar" MaxLength="50" />
+        <Property Name="OrderPreferences" Type="nvarchar" MaxLength="500" />
+      </EntityType>-->
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ICafeDataModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ICafeEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="D_ItemTags" EntityType="ICafeDataModel.D_ItemTags" />
+          <EntitySet Name="M_Customers" EntityType="ICafeDataModel.M_Customers" />
+          <EntitySet Name="M_Devices" EntityType="ICafeDataModel.M_Devices" />
+          <EntitySet Name="M_ItemCategories" EntityType="ICafeDataModel.M_ItemCategories" />
+          <EntitySet Name="M_Items" EntityType="ICafeDataModel.M_Items" />
+          <EntitySet Name="M_Menus" EntityType="ICafeDataModel.M_Menus" />
+          <EntitySet Name="M_Orders" EntityType="ICafeDataModel.M_Orders" />
+          <EntitySet Name="M_Permissions" EntityType="ICafeDataModel.M_Permissions" />
+          <EntitySet Name="M_Roles" EntityType="ICafeDataModel.M_Roles" />
+          <EntitySet Name="M_Tables" EntityType="ICafeDataModel.M_Tables" />
+          <EntitySet Name="M_Tags" EntityType="ICafeDataModel.M_Tags" />
+          <EntitySet Name="M_Users" EntityType="ICafeDataModel.M_Users" />
+          <AssociationSet Name="FK_M_Orders_M_Customers" Association="ICafeDataModel.FK_M_Orders_M_Customers">
+            <End Role="M_Customers" EntitySet="M_Customers" />
+            <End Role="M_Orders" EntitySet="M_Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Tables_M_Devices" Association="ICafeDataModel.FK_M_Tables_M_Devices">
+            <End Role="M_Devices" EntitySet="M_Devices" />
+            <End Role="M_Tables" EntitySet="M_Tables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Orders_M_Users" Association="ICafeDataModel.FK_M_Orders_M_Users">
+            <End Role="M_Users" EntitySet="M_Users" />
+            <End Role="M_Orders" EntitySet="M_Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Roles_M_Permissions" Association="ICafeDataModel.FK_M_Roles_M_Permissions">
+            <End Role="M_Permissions" EntitySet="M_Permissions" />
+            <End Role="M_Roles" EntitySet="M_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Users_M_Roles" Association="ICafeDataModel.FK_M_Users_M_Roles">
+            <End Role="M_Roles" EntitySet="M_Roles" />
+            <End Role="M_Users" EntitySet="M_Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="D_ItemTags">
+          <Key>
+            <PropertyRef Name="ItemID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" />
+          <Property Name="TagID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="M_Customers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="M_Orders" Relationship="ICafeDataModel.FK_M_Orders_M_Customers" FromRole="M_Customers" ToRole="M_Orders" />
+        </EntityType>
+        <EntityType Name="M_Devices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IsMultipleMode" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="M_Tables" Relationship="ICafeDataModel.FK_M_Tables_M_Devices" FromRole="M_Devices" ToRole="M_Tables" />
+        </EntityType>
+        <EntityType Name="M_ItemCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Discount" Type="Decimal" Precision="14" Scale="4" />
+        </EntityType>
+        <EntityType Name="M_Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Ingrediants" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IsAvailable" Type="Boolean" />
+          <Property Name="Image" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Discount" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="Price" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="SpicyLevel" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="M_Menus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="FromTime" Type="DateTime" Precision="3" />
+          <Property Name="ToTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="M_Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TotalReOrders" Type="Int32" />
+          <Property Name="PaymentStatus" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="M_Customers" Relationship="ICafeDataModel.FK_M_Orders_M_Customers" FromRole="M_Orders" ToRole="M_Customers" />
+          <NavigationProperty Name="M_Users" Relationship="ICafeDataModel.FK_M_Orders_M_Users" FromRole="M_Orders" ToRole="M_Users" />
+        </EntityType>
+        <EntityType Name="M_Permissions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="M_Roles" Relationship="ICafeDataModel.FK_M_Roles_M_Permissions" FromRole="M_Permissions" ToRole="M_Roles" />
+        </EntityType>
+        <EntityType Name="M_Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="PermissionId" Type="Int32" />
+          <NavigationProperty Name="M_Permissions" Relationship="ICafeDataModel.FK_M_Roles_M_Permissions" FromRole="M_Roles" ToRole="M_Permissions" />
+          <NavigationProperty Name="M_Users" Relationship="ICafeDataModel.FK_M_Users_M_Roles" FromRole="M_Roles" ToRole="M_Users" />
+        </EntityType>
+        <EntityType Name="M_Tables">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DeviceID" Type="Int32" />
+          <NavigationProperty Name="M_Devices" Relationship="ICafeDataModel.FK_M_Tables_M_Devices" FromRole="M_Tables" ToRole="M_Devices" />
+        </EntityType>
+        <EntityType Name="M_Tags">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Comments" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="M_Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <NavigationProperty Name="M_Orders" Relationship="ICafeDataModel.FK_M_Orders_M_Users" FromRole="M_Users" ToRole="M_Orders" />
+          <NavigationProperty Name="M_Roles" Relationship="ICafeDataModel.FK_M_Users_M_Roles" FromRole="M_Users" ToRole="M_Roles" />
+        </EntityType>
+        <Association Name="FK_M_Orders_M_Customers">
+          <End Role="M_Customers" Type="ICafeDataModel.M_Customers" Multiplicity="1" />
+          <End Role="M_Orders" Type="ICafeDataModel.M_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="M_Orders">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Tables_M_Devices">
+          <End Role="M_Devices" Type="ICafeDataModel.M_Devices" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="M_Tables" Type="ICafeDataModel.M_Tables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Devices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="M_Tables">
+              <PropertyRef Name="DeviceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Orders_M_Users">
+          <End Role="M_Users" Type="ICafeDataModel.M_Users" Multiplicity="1" />
+          <End Role="M_Orders" Type="ICafeDataModel.M_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="M_Orders">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Roles_M_Permissions">
+          <End Role="M_Permissions" Type="ICafeDataModel.M_Permissions" Multiplicity="0..1" />
+          <End Role="M_Roles" Type="ICafeDataModel.M_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Permissions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="M_Roles">
+              <PropertyRef Name="PermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Users_M_Roles">
+          <End Role="M_Roles" Type="ICafeDataModel.M_Roles" Multiplicity="0..1" />
+          <End Role="M_Users" Type="ICafeDataModel.M_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="M_Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ICafeDataModelStoreContainer" CdmEntityContainer="ICafeEntities">
+          <EntitySetMapping Name="D_ItemTags">
+            <EntityTypeMapping TypeName="ICafeDataModel.D_ItemTags">
+              <MappingFragment StoreEntitySet="D_ItemTags">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Customers">
+            <EntityTypeMapping TypeName="ICafeDataModel.M_Customers">
+              <MappingFragment StoreEntitySet="M_Customers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Devices">
+            <EntityTypeMapping TypeName="ICafeDataModel.M_Devices">
+              <MappingFragment StoreEntitySet="M_Devices">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsMultipleMode" ColumnName="IsMultipleMode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_ItemCategories">
+            <EntityTypeMapping TypeName="ICafeDataModel.M_ItemCategories">
+              <MappingFragment StoreEntitySet="M_ItemCategories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Items">
+            <EntityTypeMapping TypeName="ICafeDataModel.M_Items">
+              <MappingFragment StoreEntitySet="M_Items">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Ingrediants" ColumnName="Ingrediants" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="SpicyLevel" ColumnName="SpicyLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Menus">
+            <EntityTypeMapping TypeName="ICafeDataModel.M_Menus">
+              <MappingFragment StoreEntitySet="M_Menus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FromTime" ColumnName="FromTime" />
+                <ScalarProperty Name="ToTime" ColumnName="ToTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Orders">
+            <EntityTypeMapping TypeName="ICafeDataModel.M_Orders">
+              <MappingFragment StoreEntitySet="M_Orders">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TotalReOrders" ColumnName="TotalReOrders" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Permissions">
+            <EntityTypeMapping TypeName="ICafeDataModel.M_Permissions">
+              <MappingFragment StoreEntitySet="M_Permissions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Roles">
+            <EntityTypeMapping TypeName="ICafeDataModel.M_Roles">
+              <MappingFragment StoreEntitySet="M_Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Tables">
+            <EntityTypeMapping TypeName="ICafeDataModel.M_Tables">
+              <MappingFragment StoreEntitySet="M_Tables">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Tags">
+            <EntityTypeMapping TypeName="ICafeDataModel.M_Tags">
+              <MappingFragment StoreEntitySet="M_Tags">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Users">
+            <EntityTypeMapping TypeName="ICafeDataModel.M_Users">
+              <MappingFragment StoreEntitySet="M_Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

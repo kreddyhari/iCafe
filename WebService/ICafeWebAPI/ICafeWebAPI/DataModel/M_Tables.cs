@@ -7,20 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ICafeWebAPI
+namespace ICafeWebAPI.DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class OrdersMaster
+    public partial class M_Tables
     {
-        public int OrderId { get; set; }
-        public Nullable<int> TotalReOrders { get; set; }
-        public string PaymentStatus { get; set; }
-        public int UserId { get; set; }
-        public int CustomerId { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> DeviceID { get; set; }
     
-        public virtual CustomersMaster CustomersMaster { get; set; }
-        public virtual UsersMaster UsersMaster { get; set; }
+        public virtual M_Devices M_Devices { get; set; }
     }
 }

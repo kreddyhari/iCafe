@@ -7,25 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ICafeWebAPI
+namespace ICafeWebAPI.DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class UsersMaster
+    public partial class M_Roles
     {
-        public UsersMaster()
+        public M_Roles()
         {
-            this.OrdersMasters = new HashSet<OrdersMaster>();
+            this.M_Users = new HashSet<M_Users>();
         }
     
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-        public string UserDescription { get; set; }
-        public string UserPassword { get; set; }
-        public Nullable<int> RoleId { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> PermissionId { get; set; }
     
-        public virtual ICollection<OrdersMaster> OrdersMasters { get; set; }
-        public virtual RolesMaster RolesMaster { get; set; }
+        public virtual M_Permissions M_Permissions { get; set; }
+        public virtual ICollection<M_Users> M_Users { get; set; }
     }
 }

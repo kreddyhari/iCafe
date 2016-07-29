@@ -4,12 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ICafeWebAPI.DataModel;
 
 namespace ICafeWebAPI.Controllers
 {
     public class ValuesController : ApiController
     {
-        ICafeDBEntities objDBEntities = new ICafeDBEntities();
+        ICafeEntities objDBEntities = new ICafeEntities();
         // GET api/values        
         public IEnumerable<string> Get()
         {
@@ -23,15 +24,15 @@ namespace ICafeWebAPI.Controllers
         }
 
         // POST api/values
-        public void AddItem(ItemsMaster item)
-        {            
-            objDBEntities.ItemsMasters.Add(item);
+        public void AddItem(M_Items item)
+        {
+            objDBEntities.M_Items.Add(item);
         }
 
         // POST api/values
-        public void AddItemCategory(ItemCategoriesMaster itemCategory)
+        public void AddItemCategory(M_ItemCategories itemCategory)
         {
-            objDBEntities.ItemCategoriesMasters.Add(itemCategory);
+            objDBEntities.M_ItemCategories.Add(itemCategory);
         }
 
 
@@ -50,15 +51,15 @@ namespace ICafeWebAPI.Controllers
         // DELETE api/values/5
         public void DeleteItemMaster(int id)
         {
-            ItemsMaster item=objDBEntities.ItemsMasters.FirstOrDefault<ItemsMaster>(x=>x.ItemId==id);
-            objDBEntities.ItemsMasters.Remove(item);
+            M_Items item=objDBEntities.M_Items.FirstOrDefault<M_Items>(x=>x.Id==id);
+            objDBEntities.M_Items.Remove(item);
         }
 
         // DELETE api/values/5
         public void DeleteItemCategoryMaster(int id)
         {
-            ItemCategoriesMaster item = objDBEntities.ItemCategoriesMasters.FirstOrDefault<ItemCategoriesMaster>(x => x.ItemCategoryId== id);
-            objDBEntities.ItemCategoriesMasters.Remove(item);
+            M_ItemCategories item = objDBEntities.M_ItemCategories.FirstOrDefault<M_ItemCategories>(x => x.Id == id);
+            objDBEntities.M_ItemCategories.Remove(item);
         }
     }
 }

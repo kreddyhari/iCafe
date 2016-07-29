@@ -7,21 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ICafeWebAPI
+namespace ICafeWebAPI.DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PermissionsMaster
+    public partial class D_ItemTags
     {
-        public PermissionsMaster()
-        {
-            this.RolesMasters = new HashSet<RolesMaster>();
-        }
-    
-        public int PermissionId { get; set; }
-        public string PermissionName { get; set; }
-    
-        public virtual ICollection<RolesMaster> RolesMasters { get; set; }
+        public int ItemID { get; set; }
+        public int TagID { get; set; }
     }
 }

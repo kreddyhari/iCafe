@@ -7,16 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ICafeWebAPI
+namespace ICafeWebAPI.DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ItemCategoriesMaster
+    public partial class M_Tags
     {
-        public int ItemCategoryId { get; set; }
-        public string ItemCategoryName { get; set; }
-        public string ItemCategoryDescription { get; set; }
-        public Nullable<decimal> ItemCategoryDiscount { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Comments { get; set; }
     }
 }

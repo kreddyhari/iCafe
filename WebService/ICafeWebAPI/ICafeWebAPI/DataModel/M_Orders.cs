@@ -7,17 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ICafeWebAPI
+namespace ICafeWebAPI.DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class MenusMaster
+    public partial class M_Orders
     {
-        public int MenuId { get; set; }
-        public string MenuName { get; set; }
-        public string MenuDescription { get; set; }
-        public Nullable<System.DateTime> MenuFromTime { get; set; }
-        public Nullable<System.DateTime> MenuToTime { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> TotalReOrders { get; set; }
+        public string PaymentStatus { get; set; }
+        public string UserId { get; set; }
+        public int CustomerId { get; set; }
+    
+        public virtual M_Customers M_Customers { get; set; }
+        public virtual M_Users M_Users { get; set; }
     }
 }

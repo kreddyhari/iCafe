@@ -7,21 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ICafeWebAPI
+namespace ICafeWebAPI.DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ItemsMaster
+    public partial class M_Items
     {
-        public int ItemId { get; set; }
-        public string ItemName { get; set; }
-        public string ItemDescription { get; set; }
-        public string ItemIngrediants { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Ingrediants { get; set; }
         public Nullable<bool> IsAvailable { get; set; }
-        public string ItemImage { get; set; }
-        public Nullable<decimal> ItemDiscount { get; set; }
-        public Nullable<decimal> ItemPrice { get; set; }
-        public string ItemSpicyLevel { get; set; }
+        public string Image { get; set; }
+        public Nullable<decimal> Discount { get; set; }
+        public Nullable<decimal> Price { get; set; }
+        public string SpicyLevel { get; set; }
     }
 }

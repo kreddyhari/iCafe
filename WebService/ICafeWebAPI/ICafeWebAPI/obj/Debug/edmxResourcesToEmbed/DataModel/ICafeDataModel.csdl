@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ICafeDataModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ICafeEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="D_ItemTags" EntityType="ICafeDataModel.D_ItemTags" />
+    <EntitySet Name="M_Customers" EntityType="ICafeDataModel.M_Customers" />
+    <EntitySet Name="M_Devices" EntityType="ICafeDataModel.M_Devices" />
+    <EntitySet Name="M_ItemCategories" EntityType="ICafeDataModel.M_ItemCategories" />
+    <EntitySet Name="M_Items" EntityType="ICafeDataModel.M_Items" />
+    <EntitySet Name="M_Menus" EntityType="ICafeDataModel.M_Menus" />
+    <EntitySet Name="M_Orders" EntityType="ICafeDataModel.M_Orders" />
+    <EntitySet Name="M_Permissions" EntityType="ICafeDataModel.M_Permissions" />
+    <EntitySet Name="M_Roles" EntityType="ICafeDataModel.M_Roles" />
+    <EntitySet Name="M_Tables" EntityType="ICafeDataModel.M_Tables" />
+    <EntitySet Name="M_Tags" EntityType="ICafeDataModel.M_Tags" />
+    <EntitySet Name="M_Users" EntityType="ICafeDataModel.M_Users" />
+    <AssociationSet Name="FK_M_Orders_M_Customers" Association="ICafeDataModel.FK_M_Orders_M_Customers">
+      <End Role="M_Customers" EntitySet="M_Customers" />
+      <End Role="M_Orders" EntitySet="M_Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_M_Tables_M_Devices" Association="ICafeDataModel.FK_M_Tables_M_Devices">
+      <End Role="M_Devices" EntitySet="M_Devices" />
+      <End Role="M_Tables" EntitySet="M_Tables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_M_Orders_M_Users" Association="ICafeDataModel.FK_M_Orders_M_Users">
+      <End Role="M_Users" EntitySet="M_Users" />
+      <End Role="M_Orders" EntitySet="M_Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_M_Roles_M_Permissions" Association="ICafeDataModel.FK_M_Roles_M_Permissions">
+      <End Role="M_Permissions" EntitySet="M_Permissions" />
+      <End Role="M_Roles" EntitySet="M_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_M_Users_M_Roles" Association="ICafeDataModel.FK_M_Users_M_Roles">
+      <End Role="M_Roles" EntitySet="M_Roles" />
+      <End Role="M_Users" EntitySet="M_Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="D_ItemTags">
+    <Key>
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="TagID" />
+    </Key>
+    <Property Name="ItemID" Type="Int32" Nullable="false" />
+    <Property Name="TagID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="M_Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="EmailId" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="M_Orders" Relationship="ICafeDataModel.FK_M_Orders_M_Customers" FromRole="M_Customers" ToRole="M_Orders" />
+  </EntityType>
+  <EntityType Name="M_Devices">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="IsMultipleMode" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="M_Tables" Relationship="ICafeDataModel.FK_M_Tables_M_Devices" FromRole="M_Devices" ToRole="M_Tables" />
+  </EntityType>
+  <EntityType Name="M_ItemCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Discount" Type="Decimal" Precision="14" Scale="4" />
+  </EntityType>
+  <EntityType Name="M_Items">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Ingrediants" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="IsAvailable" Type="Boolean" />
+    <Property Name="Image" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Discount" Type="Decimal" Precision="12" Scale="4" />
+    <Property Name="Price" Type="Decimal" Precision="12" Scale="4" />
+    <Property Name="SpicyLevel" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="M_Menus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="FromTime" Type="DateTime" Precision="3" />
+    <Property Name="ToTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="M_Orders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TotalReOrders" Type="Int32" />
+    <Property Name="PaymentStatus" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="M_Customers" Relationship="ICafeDataModel.FK_M_Orders_M_Customers" FromRole="M_Orders" ToRole="M_Customers" />
+    <NavigationProperty Name="M_Users" Relationship="ICafeDataModel.FK_M_Orders_M_Users" FromRole="M_Orders" ToRole="M_Users" />
+  </EntityType>
+  <EntityType Name="M_Permissions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="M_Roles" Relationship="ICafeDataModel.FK_M_Roles_M_Permissions" FromRole="M_Permissions" ToRole="M_Roles" />
+  </EntityType>
+  <EntityType Name="M_Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="PermissionId" Type="Int32" />
+    <NavigationProperty Name="M_Permissions" Relationship="ICafeDataModel.FK_M_Roles_M_Permissions" FromRole="M_Roles" ToRole="M_Permissions" />
+    <NavigationProperty Name="M_Users" Relationship="ICafeDataModel.FK_M_Users_M_Roles" FromRole="M_Roles" ToRole="M_Users" />
+  </EntityType>
+  <EntityType Name="M_Tables">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DeviceID" Type="Int32" />
+    <NavigationProperty Name="M_Devices" Relationship="ICafeDataModel.FK_M_Tables_M_Devices" FromRole="M_Tables" ToRole="M_Devices" />
+  </EntityType>
+  <EntityType Name="M_Tags">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Comments" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="M_Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="RoleId" Type="Int32" />
+    <NavigationProperty Name="M_Orders" Relationship="ICafeDataModel.FK_M_Orders_M_Users" FromRole="M_Users" ToRole="M_Orders" />
+    <NavigationProperty Name="M_Roles" Relationship="ICafeDataModel.FK_M_Users_M_Roles" FromRole="M_Users" ToRole="M_Roles" />
+  </EntityType>
+  <Association Name="FK_M_Orders_M_Customers">
+    <End Role="M_Customers" Type="ICafeDataModel.M_Customers" Multiplicity="1" />
+    <End Role="M_Orders" Type="ICafeDataModel.M_Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="M_Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="M_Orders">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_M_Tables_M_Devices">
+    <End Role="M_Devices" Type="ICafeDataModel.M_Devices" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="M_Tables" Type="ICafeDataModel.M_Tables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="M_Devices">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="M_Tables">
+        <PropertyRef Name="DeviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_M_Orders_M_Users">
+    <End Role="M_Users" Type="ICafeDataModel.M_Users" Multiplicity="1" />
+    <End Role="M_Orders" Type="ICafeDataModel.M_Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="M_Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="M_Orders">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_M_Roles_M_Permissions">
+    <End Role="M_Permissions" Type="ICafeDataModel.M_Permissions" Multiplicity="0..1" />
+    <End Role="M_Roles" Type="ICafeDataModel.M_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="M_Permissions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="M_Roles">
+        <PropertyRef Name="PermissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_M_Users_M_Roles">
+    <End Role="M_Roles" Type="ICafeDataModel.M_Roles" Multiplicity="0..1" />
+    <End Role="M_Users" Type="ICafeDataModel.M_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="M_Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="M_Users">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

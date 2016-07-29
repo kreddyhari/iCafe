@@ -7,24 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ICafeWebAPI
+namespace ICafeWebAPI.DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class RolesMaster
+    public partial class M_Devices
     {
-        public RolesMaster()
+        public M_Devices()
         {
-            this.UsersMasters = new HashSet<UsersMaster>();
+            this.M_Tables = new HashSet<M_Tables>();
         }
     
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
-        public string RoleDescription { get; set; }
-        public Nullable<int> PermissionId { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public bool IsMultipleMode { get; set; }
     
-        public virtual PermissionsMaster PermissionsMaster { get; set; }
-        public virtual ICollection<UsersMaster> UsersMasters { get; set; }
+        public virtual ICollection<M_Tables> M_Tables { get; set; }
     }
 }
